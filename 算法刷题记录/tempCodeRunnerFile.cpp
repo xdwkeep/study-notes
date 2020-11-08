@@ -1,15 +1,10 @@
-#include <iostream>
-#include <stack>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
     int trap(vector<int>& height) {
 		stack<int> st;
 		int ans = 0;
 		for (int i = 0; i < height.size(); ++i) {
-			while (!st.empty() && height[st.top()] <= height[i]) {
+			while (!st.empty() && height[st.top()] < height[i]) {
 				// 弹出栈顶小的
 				int cur = st.top();
 				st.pop();
@@ -28,12 +23,3 @@ public:
 		return ans;
     }
 };
-
-
-int main() {
-
-	vector<int> height = {2,1,0,1,2};
-	Solution s;
-	cout << s.trap(height) << endl;
-    return 0;
-}
